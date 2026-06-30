@@ -1,5 +1,5 @@
 # menu.py - מחלקת תפריט
-from builtins import range
+from builtins import range, len
 from unicodedata import category
 
 from menu_item import MenuItem, Appetizer, MainCourse, Dessert, Beverage
@@ -48,11 +48,11 @@ class Menu:
         Returns:
             True אם נוסף, False אם כבר קיים
         """
-        for i in self._items:
-            if i == item:
+        for i in range(len(self._items)):
+            if self._items[i] == item:
                 return False
-            self._items.append()
-            return True
+            self._items[i].append()
+        return True
     
     def remove_item(self, name: str) -> bool:
         """
@@ -61,12 +61,11 @@ class Menu:
         Returns:
             True אם נמצא והוסר, False אחרת
         """
-        for i in self._items:
-            if i == item:
-                self._items.remove(i)
-                return True
-
-            return False
+        for i in range(len(self._items)):
+            if self._items[i] == item:
+                self._items.pop(i)
+            return True
+        return False
 
     
     def find_item(self, name: str) -> MenuItem:
@@ -76,9 +75,9 @@ class Menu:
         Returns:
             הפריט אם נמצא, None אחרת
         """
-        for i in self._items:
-            if name == i:
-                return  i
+        for i in range(len(self._items)):
+            if name == self._items[i].name:
+                return  se
     
     def update_price(self, name: str, new_price: float) -> bool:
         """
@@ -90,11 +89,12 @@ class Menu:
         Returns:
             True אם נמצא ועודכן, False אחרת
         """
+
         for item in self._items:
-            if name == item.name:
-                item.price == new_price
+            if item.name == name:
+                item.price = new_price
                 return True
-            return False
+        return False
     
     def get_by_category(self, category: str) -> list:
         """
@@ -103,7 +103,7 @@ class Menu:
         Returns:
             רשימת פריטים שה-get_category שלהם שווה לקטגוריה
         """
-        return [dose for dose in self.get_by_category() if dose == category]
+        return [item for item in self._items if item.get_category == category]
     
     def get_all_categories(self) -> list:
         """
@@ -148,13 +148,13 @@ class Menu:
         Returns:
             אובייקט Menu חדש
         """
-        with
+        pass
     
     # --- Magic Methods ---
     
     def __len__(self) -> int:
         """מחזיר כמות פריטים בתפריט"""
-        raise NotImplementedError("Implement this method")
+        return len(self._items)
     
     def __contains__(self, name: str) -> bool:
         """
@@ -162,7 +162,12 @@ class Menu:
         
         שימוש: "Hummus" in menu
         """
-        raise NotImplementedError("Implement this method")
+        for item in self._items:
+            if item.name == name:
+                return True
+        return False
+
+
     
     def __iter__(self):
         """
@@ -170,8 +175,9 @@ class Menu:
         
         שימוש: for item in menu: ...
         """
-        raise NotImplementedError("Implement this method")
-    
+
+        return iter(self._items)
+
     def __getitem__(self, name: str) -> MenuItem:
         """
         גישה לפריט לפי שם.
@@ -181,4 +187,4 @@ class Menu:
         דרישות:
         - אם לא נמצא, להעלות KeyError עם הודעה "Item 'name' not found in menu"
         """
-        raise NotImplementedError("Implement this method")
+        raise E

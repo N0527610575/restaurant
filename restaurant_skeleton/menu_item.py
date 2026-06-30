@@ -134,9 +134,10 @@ class MenuItem:
         - אם other הוא MenuItem, להשוות לפי name
         - אחרת, להחזיר False
         """
-        return other.name == self.name
-
-
+        if other == MenuItem:
+            return True
+        else:
+            return False
 
 
 
