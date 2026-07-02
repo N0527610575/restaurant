@@ -75,8 +75,10 @@ class Restaurant:
     
     def get_free_tables(self) -> list:
         """מחזיר רשימת שולחנות פנויים"""
+        print(t.is_occupied)
         return [t for t in self._tables if  not t.is_occupied]
-    
+
+
     def get_occupied_tables(self) -> list:
         """מחזיר רשימת שולחנות תפוסים"""
         return [t for t in self._tables if t.is_occupied]

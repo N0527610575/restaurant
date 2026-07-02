@@ -148,7 +148,7 @@ class Menu:
         Returns:
             אובייקט Menu חדש
         """
-        pass
+
     
     # --- Magic Methods ---
     
