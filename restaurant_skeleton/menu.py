@@ -49,7 +49,7 @@ class Menu:
             True אם נוסף, False אם כבר קיים
         """
         for i in range(len(self._items)):
-            if self._items[i] == item:
+            if self._items[i].name == item.name:
                 return False
             self._items[i].append()
         return True
@@ -187,4 +187,4 @@ class Menu:
         דרישות:
         - אם לא נמצא, להעלות KeyError עם הודעה "Item 'name' not found in menu"
         """
-        raise E
+        raise KeyError (f"item{self.name} not found in menu")

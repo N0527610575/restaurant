@@ -1,4 +1,4 @@
-
+from builtins import super
 
 
 class MenuItem:
@@ -123,7 +123,7 @@ class MenuItem:
         Returns:
             לדוגמה: "MenuItem(name='Hummus', price=32.0, description='desc')"
         """
-        return f"MenuItem(name= '{self._name}' ),price= '{self.price}', description = {self._description}"
+        return f"MenuItem(name= '{self._name}' ,price= {self.price}, description = {self._description})"
 
 
     def __eq__(self, other) -> bool:
@@ -318,8 +318,8 @@ class Appetizer(MenuItem):
             "name - $price" או "name - $price (with bread_type +$5.00)"
         """
         if self._selected_bread is  None:
-            return f"{self._name} - {self.format_price(self._price)}"
-        return f"{self._name} - {self.format_price(self._price)} (with bread_type +{Appetizer.BREAD_PRICE}"
+            return super().__str__()
+        return f"{self._name} - {self.format_price(self._price)} (with {self._selected_bread}+{self.format_price(self.BREAD_PRICE)}"
 
 
 class MainCourse(MenuItem):
@@ -430,7 +430,7 @@ class Dessert(MenuItem):
     @property
     def is_sugar_free(self) -> bool:
         """מחזיר האם הקינוח ללא סוכר"""
-        return self._is__sugar_free
+        return self._is_sugar_free
     
     def get_category(self) -> str:
         """מחזיר 'Desserts'"""
@@ -537,6 +537,4 @@ class Beverage(MenuItem):
         return f"{self._name} ({self._price},{self._is_cold})-{self._price} "
 
 
-# if __name__ == "__main__":
-#     a1 = MenuItem("oo", 90.0)
-#     print([a1])
+
